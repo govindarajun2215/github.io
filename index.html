@@ -1,11 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Govinda Raju - DevOps Engineer</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; color: #333; }
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 100px 20px; }
+        .name { font-size: 3em; margin: 0; }
+        .subtitle { font-size: 1.5em; margin: 10px 0; opacity: 0.9; }
+        .bio { max-width: 600px; margin: 20px auto; font-size: 1.1em; }
+        .stats { display: flex; justify-content: center; gap: 30px; padding: 50px 20px; background: white; }
+        .stat { text-align: center; }
+        .stat-num { font-size: 2.5em; font-weight: bold; color: #667eea; }
+        .buttons { margin: 40px 0; }
+        .btn { display: inline-block; padding: 15px 30px; margin: 10px; background: #667eea; color: white; text-decoration: none; border-radius: 5px; }
+        nav { background: rgba(0,0,0,0.8); padding: 15px; position: fixed; top: 0; width: 100%; color: white; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; }
+    </style>
 </head>
 <body>
-  <h1>Welcome to my free website!</h1>
-  <p>This is hosted on GitHub Pages.</p>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <section id="home" class="hero">
+        <h1 class="name">Govinda Raju</h1>
+        <p class="subtitle">DevOps Engineer | Ansible, Kubernetes & CI/CD Specialist</p>
+        <p class="bio">Building scalable infrastructure in Bengaluru. Expertise in automation, drift detection, and YouTube tech content.</p>
+        <div class="buttons">
+            <a href="#contact" class="btn">Contact Me</a>
+            <a href="#experience" class="btn">View Work</a>
+        </div>
+    </section>
+    <section class="stats">
+        <div class="stat">
+            <div class="stat-num">25+</div>
+            <div>Projects</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">40%</div>
+            <div>Efficiency Gains</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">10+</div>
+            <div>Tools Mastered</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">9x</div>
+            <div>Faster Deploys</div>
+        </div>
+    </section>
 </body>
 </html>
 
