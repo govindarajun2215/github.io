@@ -4,113 +4,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Govinda Raju N - DevOps & Cloud Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; color: #333; }
-        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 100px 20px; }
-        .name { font-size: 3em; margin: 0; }
-        .subtitle { font-size: 1.5em; margin: 10px 0; opacity: 0.9; }
-        .bio { max-width: 600px; margin: 20px auto; font-size: 1.1em; }
-        .stats { display: flex; justify-content: center; gap: 30px; padding: 50px 20px; background: white; }
-        .stat { text-align: center; }
-        .stat-num { font-size: 2.5em; font-weight: bold; color: #667eea; }
-        .buttons { margin: 40px 0; }
-        .btn { display: inline-block; padding: 15px 30px; margin: 10px; background: #667eea; color: white; text-decoration: none; border-radius: 5px; }
-        nav { background: rgba(0,0,0,0.8); padding: 15px; position: fixed; top: 0; width: 100%; color: white; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(135deg, #0f0f23 0%, #2a2a4a 100%); 
+            color: #fff; 
+            overflow-x: hidden;
+        }
+        nav { 
+            background: rgba(15,15,35,0.95); 
+            backdrop-filter: blur(20px); 
+            padding: 1rem 0; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        nav ul { display: flex; justify-content: center; list-style: none; }
+        nav a { color: #fff; text-decoration: none; padding: 1rem 2rem; font-weight: 500; transition: all 0.3s ease; }
+        nav a:hover { color: #667eea; transform: translateY(-2px); }
+
+        .hero { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); 
+            text-align: center; 
+            padding: 150px 20px 120px; 
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 20s infinite linear;
+        }
+        @keyframes float { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .name { font-size: 4em; font-weight: 700; margin-bottom: 0.5em; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .subtitle { font-size: 1.8em; margin-bottom: 1em; opacity: 0.95; }
+        .bio { font-size: 1.2em; max-width: 700px; margin: 0 auto 2em; line-height: 1.7; }
+        .contact-info { background: rgba(255,255,255,0.1); padding: 1em 2em; border-radius: 50px; backdrop-filter: blur(10px); margin-bottom: 2em; }
+        
+        .stats { 
+            display: flex; justify-content: center; gap: 3rem; padding: 4rem 2rem; background: rgba(255,255,255,0.05); 
+            backdrop-filter: blur(20px);
+        }
+        .stat { 
+            text-align: center; padding: 2rem 1.5rem; background: rgba(255,255,255,0.1); 
+            border-radius: 20px; backdrop-filter: blur(20px); transition: all 0.4s ease;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .stat:hover { transform: translateY(-10px) scale(1.05); background: rgba(102,126,234,0.3); }
+        .stat-num { font-size: 3em; font-weight: 700; background: linear-gradient(45deg, #fff, #667eea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5em; }
+        .stat-label { font-size: 1.1em; opacity: 0.9; }
+
+        .section { padding: 100px 20px; max-width: 1200px; margin: 0 auto; }
+        .section h2 { text-align: center; font-size: 3em; margin-bottom: 3em; background: linear-gradient(45deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .about-content { font-size: 1.3em; line-height: 1.8; text-align: center; max-width: 900px; margin: 0 auto; opacity: 0.95; }
+
+        .experience-grid { display: grid; gap: 2rem; max-width: 1000px; margin: 0 auto; }
+        .exp-card { 
+            background: rgba(255,255,255,0.1); padding: 2.5rem; border-radius: 20px; backdrop-filter: blur(20px); 
+            transition: all 0.4s ease; border: 1px solid rgba(255,255,255,0.2);
+            position: relative; overflow: hidden;
+        }
+        .exp-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        .exp-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .exp-title { color: #667eea; font-size: 1.5em; margin-bottom: 1em; font-weight: 600; }
+        .exp-desc { line-height: 1.7; margin-bottom: 1em; }
+
+        .skills-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; 
+            max-width: 1000px; margin: 0 auto 3rem;
+        }
+        .skill-tag { 
+            background: rgba(255,255,255,0.15); padding: 1rem 1.5rem; border-radius: 50px; 
+            text-align: center; font-weight: 600; cursor: pointer; transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .skill-tag:hover { 
+            background: rgba(102,126,234,0.3); transform: translateY(-5px) scale(1.05); 
+            box-shadow: 0 10px 25px rgba(102,126,234,0.4);
+        }
+
+        .contact-grid { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2em; }
+        .btn { 
+            padding: 1rem 2.5rem; background: rgba(255,255,255,0.2); color: white; 
+            text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease;
+            backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);
+        }
+        .btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+
+        @media (max-width: 768px) {
+            .name { font-size: 2.5em; }
+            .stats { flex-direction: column; gap: 1.5rem; }
+            .skills-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+        }
     </style>
 </head>
 <body>
     <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <a href="#about"><li>About</li></a>
+            <a href="#experience"><li>Experience</li></a>
+            <a href="#skills"><li>Skills</li></a>
+            <a href="#contact"><li>Contact</li></a>
+        </ul>
     </nav>
+
     <section id="home" class="hero">
+        <div class="contact-info">📞 +91-9590929343 | govindarajun2215@gmail.com</div>
         <h1 class="name">Govinda Raju N</h1>
         <p class="subtitle">DevOps & Cloud Engineer | 9+ Years Experience</p>
-        <p class="bio">📞 +91-9590929343 | govindarajun2215@gmail.com<br>CI/CD, Kubernetes (AKS/KOB), Ansible, Azure, Docker, Terraform</p>
-        <div class="buttons">
+        <p class="bio">CI/CD, Kubernetes (AKS/KOB), Ansible, Azure DevOps, Docker, Terraform, GitLab CI</p>
+        <div class="contact-grid">
             <a href="#contact" class="btn">Contact Me</a>
             <a href="#experience" class="btn">View Experience</a>
         </div>
     </section>
+
     <section class="stats">
         <div class="stat">
             <div class="stat-num">9+</div>
-            <div>Years Exp</div>
+            <div class="stat-label">Years Experience</div>
         </div>
         <div class="stat">
             <div class="stat-num">AKS</div>
-            <div>KOB</div>
+            <div class="stat-label">Kubernetes</div>
         </div>
         <div class="stat">
-            <div class="stat-num">GitLab</div>
-            <div>CI/CD</div>
+            <div class="stat-num">KOB</div>
+            <div class="stat-label">Bare Metal</div>
         </div>
         <div class="stat">
             <div class="stat-num">Dell</div>
-            <div>& Harman</div>
+            <div class="stat-label">Client</div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" style="padding: 80px 20px; background: #f9f9f9; text-align: center;">
-        <h2 style="font-size: 2.5em; margin-bottom: 40px;">Profile Summary</h2>
-        <p style="max-width: 800px; margin: 0 auto 30px; font-size: 1.2em; line-height: 1.6;">
-            DevOps Engineer with 9+ years in CI/CD, Cloud, Containerization, and Automation. 
-            Skilled in GitLab, Jenkins, Docker, Kubernetes (AKS & Bare Metal KOB), Ansible, 
-            Terraform, Azure DevOps, PCF, and JFrog Artifactory. Expert in building automated 
-            pipelines across DEV, QA, UAT, and PROD environments.[file:51]
-        </p>
+    <section id="about" class="section">
+        <h2>Profile Summary</h2>
+        <div class="about-content">
+            DevOps Engineer with 9+ years expertise in CI/CD pipelines, Cloud Infrastructure, Container Orchestration, 
+            and Infrastructure as Code. Delivered scalable solutions for Dell Technologies and Harman International 
+            using GitLab CI, Jenkins, Kubernetes (AKS & KOB), Ansible, Terraform, Azure DevOps, and JFrog Artifactory.
+        </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" style="padding: 80px 20px; background: white;">
-        <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 50px;">Professional Experience</h2>
-        <div style="max-width: 1000px; margin: 0 auto;">
-            <div style="background: #f4f4f4; padding: 30px; margin-bottom: 30px; border-radius: 10px;">
-                <h3 style="color: #667eea;">DevOps Engineer | Accion Labs (Dell Technologies) | Nov 2023 - Present</h3>
-                <p><strong>DMX MyAccount Project:</strong> Created Docker files & Kubernetes manifests for KOB deployment. 
-                Used KOBACE for config management, Helm charts, GitLab CI/CD pipelines. Migrated from PCF to KOB.[file:51]</p>
+    <section id="experience" class="section" style="background: rgba(255,255,255,0.05);">
+        <h2>Professional Experience</h2>
+        <div class="experience-grid">
+            <div class="exp-card">
+                <h3 class="exp-title">DevOps Engineer | Accion Labs (Dell Technologies)</h3>
+                <p class="exp-desc"><strong>Nov 2023 - Present | DMX MyAccount</strong><br>
+                Dockerized apps & Kubernetes manifests for KOB deployment. Implemented KOBACE config management, 
+                Helm charts, GitLab CI/CD. Migrated PCF → KOB with zero downtime.</p>
             </div>
-            <div style="background: #f4f4f4; padding: 30px; margin-bottom: 30px; border-radius: 10px;">
-                <h3 style="color: #667eea;">DevOps Engineer | Valley Infosystems (Harman International) | 2016-2023</h3>
-                <p><strong>CEP Project (2022-23):</strong> Jenkins pipelines w/ SonarQube, AKS deployments, JFrog Artifactory, 
-                Azure Data Factory + Databricks ETL. <strong>SNDA Project:</strong> Maven builds, Ansible microservices, 
-                Nexus artifacts, AWS provisioning.[file:51]</p>
+            <div class="exp-card">
+                <h3 class="exp-title">DevOps Engineer | Valley Infosystems (Harman International)</h3>
+                <p class="exp-desc"><strong>2016-2023 | CEP & SNDA Projects</strong><br>
+                Jenkins pipelines + SonarQube, AKS deployments, JFrog Artifactory, Azure Data Factory ETL. 
+                Maven builds, Ansible microservices, Nexus artifacts, AWS provisioning.</p>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" style="padding: 80px 20px; background: #f9f9f9; text-align: center;">
-        <h2 style="font-size: 2.5em; margin-bottom: 40px;">Core Skills</h2>
-        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto;">
-            <span style="background: white; padding: 12px 20px; border-radius: 25px; font-weight: bold; font-size: 0.9em;">Git/GitLab/Jenkins</span>
-            <span style="background: white; padding: 12px 20px; border-radius: 25px; font-weight: bold; font-size: 0.9em;">Docker/Kubernetes</span>
-            <span style="background: white; padding: 12px 20px; border-radius: 25px; font-weight: bold; font-size: 0.9em;">Ansible/Terraform</span>
-            <span style="background: white; padding: 12px 20px; border-radius: 25px; font-weight: bold; font-size: 0.9em;">Azure DevOps/AKS</span>
-            <span style="background: white; padding: 12px 20px; border-radius: 25px; font-weight: bold; font-size: 0.9em;">PCF/KOBACE/Helm</span>
-            <span style="background: white; padding: 12px 20px; border-radius: 25px; font-weight: bold; font-size: 0.9em;">JFrog Artifactory</span>
-            <span style="background: white; padding: 12px 20px; border-radius: 25px; font-weight: bold; font-size: 0.9em;">Maven/YAML/Python</span>
-            <span style="background: white; padding: 12px 20px; border-radius: 25px; font-weight: bold; font-size: 0.9em;">SonarQube/Splunk</span>
+    <section id="skills" class="section">
+        <h2>Core Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-tag">GitLab CI</div>
+            <div class="skill-tag">Jenkins</div>
+            <div class="skill-tag">Kubernetes</div>
+            <div class="skill-tag">Docker</div>
+            <div class="skill-tag">Ansible</div>
+            <div class="skill-tag">Terraform</div>
+            <div class="skill-tag">Azure AKS</div>
+            <div class="skill-tag">KOBACE</div>
+            <div class="skill-tag">JFrog</div>
+            <div class="skill-tag">Helm Charts</div>
+            <div class="skill-tag">Maven</div>
+            <div class="skill-tag">SonarQube</div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" style="padding: 80px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center;">
-        <h2 style="font-size: 2.5em; margin-bottom: 30px;">Get In Touch</h2>
-        <p style="font-size: 1.2em; margin-bottom: 30px;">Bengaluru, Karnataka | +91-9590929343 | govindarajun2215@gmail.com</p>
-        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-            <a href="mailto:govindarajun2215@gmail.com" style="color: white; padding: 15px 30px; background: rgba(255,255,255,0.2); border-radius: 5px; text-decoration: none;">Email</a>
-            <a href="https://github.com/govindarajun2215" style="color: white; padding: 15px 30px; background: rgba(255,255,255,0.2); border-radius: 5px; text-decoration: none;">GitHub</a>
-            <a href="#" style="color: white; padding: 15px 30px; background: rgba(255,255,255,0.2); border-radius: 5px; text-decoration: none;">LinkedIn</a>
-            <a href="#" style="color: white; padding: 15px 30px; background: rgba(255,255,255,0.2); border-radius: 5px; text-decoration: none;">Download Resume</a>
+    <section id="contact" class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); text-align: center;">
+        <h2>Get In Touch</h2>
+        <p style="font-size: 1.3em; margin-bottom: 2em; opacity: 0.95;">Bengaluru, Karnataka | Open for Collaborations</p>
+        <div class="contact-grid">
+            <a href="mailto:govindarajun2215@gmail.com" class="btn">📧 Email</a>
+            <a href="https://github.com/govindarajun2215" class="btn">💻 GitHub</a>
+            <a href="#" class="btn">💼 LinkedIn</a>
+            <a href="#" class="btn">📄 Resume</a>
         </div>
-        <p style="margin-top: 40px; opacity: 0.9;">
-            B.E Electronics & Communication | VTU | Govt. SKSJTI, Bengaluru | 2014
+        <p style="margin-top: 3em; opacity: 0.8; font-size: 1.1em;">
+            B.E Electronics & Communication | VTU | Bengaluru | 2014
         </p>
     </section>
 </body>
